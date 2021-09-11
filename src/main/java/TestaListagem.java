@@ -28,11 +28,7 @@ public class TestaListagem {
 			System.out.println(descricao);
 		}
 		
-		
-		connection.close();
-		
-		System.out.println("teste");
-		
+		connection.close();			
 	}
 
 }

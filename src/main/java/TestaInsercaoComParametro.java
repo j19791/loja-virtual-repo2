@@ -8,22 +8,42 @@ import java.sql.Statement;
 public class TestaInsercaoComParametro {
 
 	public static void main(String[] args) throws SQLException {
-		//informacções que vem do usuário
-		String nome = "Mouse'" ; //aspas simples sao especificas do sql. Erro do usuario. Quabra da aplicação
-		
-		String descricao = "Mouse sem fio); delete from produto;"; //injecao de clausula sql
 		
 		
 		//recuperar a conexao
 		Connection connection = new ConnectionFacotry().recuperarConexao();
+		connection.setAutoCommit(false);//tira a responsabilidade do JDBC de fazer o commit das transações. O commit agora voce deverá explicitar
 	
 		String sql = "INSERT INTO produto (NOME, DESCRICAO) values (?,?)"; 
 
-		//preparar o statement: responsabilidade p/ gerenciar os atributos da clausula sql agora são do JDBC
-		PreparedStatement stm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+		try {
+			//preparar o statement: responsabilidade p/ gerenciar os atributos da clausula sql agora são do JDBC
+			PreparedStatement stm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			
+			//adicionar os 2 produtos ou nenhum
+			adicionarVariavel("SmartTV", "45 polegadas",  stm);
+			adicionarVariavel("Radio", "Radio de bateria",  stm);
+			
+			connection.commit();//se ocorrer tudo bem na transacao
+			
+			stm.close();
+			connection.close();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();//me fala qual foi a exception
+			System.out.println("roolback executado");
+			connection.rollback();
+		}
 		
+	}
+
+	private static void adicionarVariavel(String nome, String descricao,   PreparedStatement stm)
+			throws SQLException {
 		stm.setString(1, nome);
 		stm.setString(2, descricao);
+		
+		if(nome.equals("Radio"))
+			throw new RuntimeException("simular erro");
 		
 		stm.execute();
 		
@@ -35,9 +55,6 @@ public class TestaInsercaoComParametro {
 			System.out.println("O id criado foi:" + id);
 			
 		}
-		
-		
-		connection.close();
 		
 		
 		

@@ -22,3 +22,6 @@ Anotações do curso Java e JDBC
 ## Evitando SQL Injection
 - no statement:  "Mouse sem fio); delete from produto;";` 
 - PreparedStatement: valida p/ evitr o sqlInjection
+
+## Controle de Transação
+- 
