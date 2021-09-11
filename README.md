@@ -1,2 +1,20 @@
 # loja-virtual-repo2
-AnotaÃ§Ãµes do curso JDBC da Alura
+Anotações do curso Java e JDBC
+
+## Usando um BD
+- biblioteca Java (jar): 
+- desenvolvido pela equipe do MySQLconhece o MYSQL e expõe p/ a aplicação Java tudo o q for necessário p/ comunicação
+- Driver: Mysql/JAva
+- Driver SQLServer/Java
+- JDBC: camada de abstração - p/ não alterar o código da aplicação qdo é alterado o Servidor BD. Basta a aplicação conhecer o JDBC
+	- java.sql.* 
+
+## Conexão
+- necessário dependencia mysql-connector-java
+
+## Comandos sSQL
+-statements: clausulas select, insert, etc
+
+## ConnectionFactory
+
+
