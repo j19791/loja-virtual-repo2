@@ -9,9 +9,9 @@ public class TestaListagem {
 	public static void main(String[] args) throws SQLException {
 
 		//recuperar a conexao
-		Connection connection = DriverManager
-				.getConnection("jdbc:mysql://database-1.cmblgshfej2r.us-east-2.rds.amazonaws.com:3306/loja_virtual", "admin", "H8NJJaUJkKm9Qv3");
-
+		Connection connection = new ConnectionFacotry().recuperarConexao();
+		
+		
 		Statement stm = connection.createStatement();
 		boolean resultado = stm.execute("SELECT ID, NOME, DESCRICAO FROM produto"); //retorna true qdo o retorno é uma lista. Diferente de lista (insert,delete,etc)= false
 		//cuidado: o nome da tabela é case sensitive

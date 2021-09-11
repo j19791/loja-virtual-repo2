@@ -16,5 +16,7 @@ Anotações do curso Java e JDBC
 -statements: clausulas select, insert, etc
 
 ## ConnectionFactory
+- Factory: Design pattern que encapsula e centraliza código que cria objetos. 
+- Quando o endponint, usuario ou senha mudar, não é mais necessário buscar no código todos os locais que abrem conexão c/ o bd
 
 
