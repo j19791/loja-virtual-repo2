@@ -31,7 +31,7 @@ public class TestaInsercao {
 		
 		connection.close();
 		
-		System.out.println("teste");
+		
 		
 	}
 
