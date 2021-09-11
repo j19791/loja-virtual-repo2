@@ -1,8 +1,6 @@
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class TestaRemocao {
 
@@ -11,11 +9,11 @@ public class TestaRemocao {
 		//recuperar a conexao
 		Connection connection = new ConnectionFacotry().recuperarConexao();		
 		
-		Statement stm = connection.createStatement();		
+		PreparedStatement stm = connection.prepareStatement("DELETE FROM produto WHERE id > ? ");
 		
-		stm.execute("DELETE FROM produto WHERE id > 2 "); //  
+		stm.setInt(1, 2);
 		
-		
+		stm.execute(); //  		
 			
 		Integer linhasModificadas = stm.getUpdateCount(); //qtas linhas foram modificadas (deletadas)??
 		

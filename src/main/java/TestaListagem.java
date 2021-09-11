@@ -1,8 +1,7 @@
 import java.sql.Connection;
-import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class TestaListagem {
 
@@ -12,8 +11,8 @@ public class TestaListagem {
 		Connection connection = new ConnectionFacotry().recuperarConexao();
 		
 		
-		Statement stm = connection.createStatement();
-		boolean resultado = stm.execute("SELECT ID, NOME, DESCRICAO FROM produto"); //retorna true qdo o retorno é uma lista. Diferente de lista (insert,delete,etc)= false
+		PreparedStatement stm = connection.prepareStatement("SELECT ID, NOME, DESCRICAO FROM produto");
+		boolean resultado = stm.execute(); //retorna true qdo o retorno é uma lista. Diferente de lista (insert,delete,etc)= false
 		//cuidado: o nome da tabela é case sensitive
 		
 		System.out.println(resultado);
